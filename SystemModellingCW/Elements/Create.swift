@@ -8,11 +8,16 @@
 struct CreatorDelay<T> {
     let delayMean: Double
     let probability: Double
+    let distribution: Distribution
     let itemGenerator: () -> T?
+    var delayDeviation: Double = 0.0
+    let k: Int
     
-    init(delayMean: Double, probability: Double, _ itemGenerator: @escaping () -> T? = { return nil }) {
+    init(delayMean: Double, probability: Double, _ distribution: Distribution, k: Int = 1, _ itemGenerator: @escaping () -> T? = { return nil }) {
         self.delayMean = delayMean
         self.probability = probability
+        self.distribution = distribution
+        self.k = k
         self.itemGenerator = itemGenerator
     }
 }
@@ -21,10 +26,10 @@ class Create<T>: Element<T> {
     
     private let delays: [CreatorDelay<T>]
     
-    init(delays: [CreatorDelay<T>], name: String, chooseBy type: NextElementsChooseType) {
+    init(delays: [CreatorDelay<T>], name: String, chooseBy type: NextElementsChooseType = .priority) {
         self.delays = delays
         super.init(delay: 1.0, name: name, chooseBy: type)
-        self.tNext = 0
+        self.tNext = self.getDelay().0
     }
     
     override func outAct() {
@@ -46,7 +51,21 @@ class Create<T>: Element<T> {
         for delay in delays {
             sum += delay.probability
             if randomValue <= sum {
-                return (FunRand.exponential(timeMean: delay.delayMean), delay.itemGenerator())
+                switch delay.distribution {
+                case .exponential:
+                    return (FunRand.exponential(timeMean: delay.delayMean), delay.itemGenerator())
+                case .normal:
+                    return (FunRand.normal(
+                        timeMean: delay.delayMean, timeDeviation: delay.delayDeviation),
+                            delay.itemGenerator()
+                    )
+                case .uniform:
+                    let timeMin = delay.delayMean - delay.delayDeviation
+                    let timeMax = delay.delayMean + delay.delayDeviation
+                    return (FunRand.uniform(timeMin: timeMin, timeMax: timeMax), delay.itemGenerator())
+                case .erlang:
+                    return (FunRand.erlang(timeMean: delay.delayMean, k: delay.k), delay.itemGenerator())
+                }
             }
         }
         return (Double.greatestFiniteMagnitude, nil)

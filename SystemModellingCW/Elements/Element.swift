@@ -19,6 +19,7 @@ class Element<T> {
     var tNext: Double = Double.greatestFiniteMagnitude
     var delayMean: Double = 0
     var delayDev: Double = 0
+    var k: Int = 1
     var distribution: Distribution = .exponential
     private(set) var quantity: Int = 0
     var tCurr: Double = 0
@@ -26,7 +27,6 @@ class Element<T> {
     var item: T? = nil
     var nextElements: [NextElement<T>]?
     let nextElementsChooseType: NextElementsChooseType
-//    private(set) static var nextId: Int = 0
     private(set) var id: Int = 0
     
     
@@ -157,6 +157,8 @@ class Element<T> {
             return FunRand.normal(timeMean: delayMean, timeDeviation: delayDev)
         case .uniform:
             return FunRand.uniform(timeMin: delayMean, timeMax: delayDev)
+        case .erlang:
+            return FunRand.erlang(timeMean: delayMean, k: k)
         }
     }
     

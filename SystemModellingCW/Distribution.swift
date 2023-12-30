@@ -8,5 +8,5 @@
 import Foundation
 
 enum Distribution {
-    case exponential, normal, uniform
+    case exponential, normal, uniform, erlang
 }

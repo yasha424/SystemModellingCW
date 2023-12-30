@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D3C5BB282B3D837A00A089B1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB232B3D837A00A089B1 /* Model.swift */; };
-		D3C5BB292B3D837A00A089B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB242B3D837A00A089B1 /* main.swift */; };
 		D3C5BB2A2B3D837A00A089B1 /* Distribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB262B3D837A00A089B1 /* Distribution.swift */; };
 		D3C5BB2B2B3D837A00A089B1 /* FunRand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB272B3D837A00A089B1 /* FunRand.swift */; };
 		D3C5BB322B3D844800A089B1 /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB2D2B3D844800A089B1 /* Create.swift */; };
@@ -16,6 +15,7 @@
 		D3C5BB342B3D844800A089B1 /* NextElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB2F2B3D844800A089B1 /* NextElement.swift */; };
 		D3C5BB352B3D844800A089B1 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB302B3D844800A089B1 /* Process.swift */; };
 		D3C5BB362B3D844800A089B1 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB312B3D844800A089B1 /* Element.swift */; };
+		D3C5BB382B3D86AE00A089B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5BB372B3D86AE00A089B1 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,7 +33,6 @@
 /* Begin PBXFileReference section */
 		D3C5BB192B3D836200A089B1 /* SystemModellingCW */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemModellingCW; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C5BB232B3D837A00A089B1 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		D3C5BB242B3D837A00A089B1 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = "../../../System Modelling/System Modelling/main.swift"; sourceTree = "<group>"; };
 		D3C5BB262B3D837A00A089B1 /* Distribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distribution.swift; sourceTree = "<group>"; };
 		D3C5BB272B3D837A00A089B1 /* FunRand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunRand.swift; sourceTree = "<group>"; };
 		D3C5BB2D2B3D844800A089B1 /* Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create.swift; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		D3C5BB2F2B3D844800A089B1 /* NextElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextElement.swift; sourceTree = "<group>"; };
 		D3C5BB302B3D844800A089B1 /* Process.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		D3C5BB312B3D844800A089B1 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		D3C5BB372B3D86AE00A089B1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +76,8 @@
 				D3C5BB2C2B3D843700A089B1 /* Elements */,
 				D3C5BB262B3D837A00A089B1 /* Distribution.swift */,
 				D3C5BB272B3D837A00A089B1 /* FunRand.swift */,
-				D3C5BB242B3D837A00A089B1 /* main.swift */,
 				D3C5BB232B3D837A00A089B1 /* Model.swift */,
+				D3C5BB372B3D86AE00A089B1 /* main.swift */,
 			);
 			path = SystemModellingCW;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 				D3C5BB362B3D844800A089B1 /* Element.swift in Sources */,
 				D3C5BB2A2B3D837A00A089B1 /* Distribution.swift in Sources */,
 				D3C5BB282B3D837A00A089B1 /* Model.swift in Sources */,
-				D3C5BB292B3D837A00A089B1 /* main.swift in Sources */,
+				D3C5BB382B3D86AE00A089B1 /* main.swift in Sources */,
 				D3C5BB332B3D844800A089B1 /* NextElementsChooseType.swift in Sources */,
 				D3C5BB322B3D844800A089B1 /* Create.swift in Sources */,
 				D3C5BB352B3D844800A089B1 /* Process.swift in Sources */,

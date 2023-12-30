@@ -14,9 +14,10 @@ class Process<T>: Element<T> {
     private(set) var channelsTNext = [Double]()
     private(set) var channelsItems = [T?]()
     private(set) var totalLoadTime: Double = 0
+    var outAction: ((_ item: T?, _ currentTime: Double) -> Void)? = nil
     var getDelay: (_ item: T?) -> Double
     
-    init(name: String = "", maxQueue: Int = Int.max, channels: UInt = 1, chooseBy type: NextElementsChooseType = .probability, delay: @escaping (_ item: T?) -> Double) {
+    init(name: String = "", maxQueue: Int = Int.max, channels: UInt = 1, chooseBy type: NextElementsChooseType = .priority, delay: @escaping (_ item: T?) -> Double) {
         self.maxQueue = maxQueue
         self.getDelay = delay
         
@@ -44,17 +45,6 @@ class Process<T>: Element<T> {
                     failure += 1
                 }
             }
-        } else if state == 0 {
-            state = 1
-            tNext = tCurr + delay
-            totalLoadTime += delay
-            self.item = item
-        } else {
-            if queue.count < maxQueue {
-                queue.append(item)
-            } else {
-                failure += 1
-            }
         }
     }
     
@@ -68,6 +58,9 @@ class Process<T>: Element<T> {
                 channelsTNext[currChannel] = Double.greatestFiniteMagnitude
                 currItem = channelsItems[currChannel]
                 let delay = getDelay(currItem)
+                if let outAction {
+                    outAction(currItem, tCurr)
+                }
                 channelsItems[currChannel] = nil
                 if queue.count > 0 {
                     channelsStates[currChannel] = 1
@@ -77,18 +70,7 @@ class Process<T>: Element<T> {
                 }
                 tNext = channelsTNext.min() ?? Double.greatestFiniteMagnitude
             }
-        } else {
-            tNext = Double.greatestFiniteMagnitude
-            state = 0
-            self.item = nil
-            if queue.count > 0 {
-                self.item = queue.removeFirst()
-                state = 1
-                let delay = getDelay(self.item)
-                tNext = tCurr + delay
-                totalLoadTime += delay
-            }
-        }
+        } 
         if let nextElement = getNextElement(currItem) {
             nextElement.element.inAct(nextElement.itemGenerator == nil ? currItem : nextElement.itemGenerator?())
         }
@@ -109,5 +91,10 @@ class Process<T>: Element<T> {
         } else {
             return state == 0
         }
+    }
+    
+    func getFailureProbability() -> Double {
+        guard self.quantity != 0 else { return 0 }
+        return Double(self.failure) / Double(self.quantity + self.failure)
     }
 }

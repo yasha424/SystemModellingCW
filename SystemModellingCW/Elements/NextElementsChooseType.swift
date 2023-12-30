@@ -6,8 +6,5 @@
 //
 
 enum NextElementsChooseType {
-    case priority
-    case probability
-    case byQueueLength
-    case byCondition
+    case priority, probability, byQueueLength, byCondition
 }

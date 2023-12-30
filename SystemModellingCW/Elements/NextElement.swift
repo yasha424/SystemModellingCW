@@ -21,7 +21,7 @@ class NextElement<T> {
     let condition: ConditionFunc
     let itemGenerator: ItemGenerator?
     
-    init(element: Element<T>, priority: Int? = nil, probability: Double? = nil, condition: ConditionFunc = nil, itemGenerator: ItemGenerator? = nil) {
+    init(element: Element<T>, priority: Int? = 1, probability: Double? = nil, condition: ConditionFunc = nil, itemGenerator: ItemGenerator? = nil) {
         self.element = element
         self.priority = priority
         self.probability = probability
